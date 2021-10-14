@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42E1AE79-A3DB-46D0-9103-81428B1F430B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{03F39C86-FE55-4F6E-8790-B92EFDFE4E3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageDailyTraining.Domain", "src\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj", "{2641119B-C6A1-4193-84DA-8FC1027C105D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2641119B-C6A1-4193-84DA-8FC1027C105D} = {42E1AE79-A3DB-46D0-9103-81428B1F430B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCC9F73C-48E3-445F-8E3D-518FDE3BF349}
+	EndGlobalSection
+EndGlobal
