@@ -11,10 +11,10 @@ namespace LanguageDailyTraining.Domain.Entities
 
         public IEnumerable<TrainingPlan> TrainingPlans { get; private set; }
 
-        public User(string name, string email) : base()
+        public User(string name, Email email) : base()
         {
             Name = name;
-            Email = new Email(email);
+            Email = email;
 
             Validate();
         }
