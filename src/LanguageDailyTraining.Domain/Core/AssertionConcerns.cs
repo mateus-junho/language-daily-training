@@ -19,5 +19,13 @@ namespace LanguageDailyTraining.Domain.Core
             }
         }
 
+        public static void AssertArgumentRange(int value, int minimum, int maximum, string message)
+        {
+            if (value < minimum || value > maximum)
+            {
+                throw new DomainException(message);
+            }
+        }
+
     }
 }
