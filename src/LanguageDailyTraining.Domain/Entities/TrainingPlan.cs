@@ -32,6 +32,7 @@ namespace LanguageDailyTraining.Domain.Entities
         public void Validate()
         {
             AssertionConcerns.AssertArgumentNotEmpty(Name, "Name cannot be null or empty");
+            AssertionConcerns.AssertArgumentNotEquals(UserId, Guid.Empty, "UserId cannot be empty");
             AssertionConcerns.AssertArgumentRange(SentenceQuantity, SENTENCE_QUANTITY_MIN, SENTENCE_QUANTITY_MAX,
                 $"SentenceQuantity should be between {SENTENCE_QUANTITY_MIN} and {SENTENCE_QUANTITY_MAX}");
             AssertionConcerns.AssertArgumentRange(Iterations, ITERATIONS_QUANTITY_MIN, ITERATIONS_QUANTITY_MAX,

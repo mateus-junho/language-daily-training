@@ -28,6 +28,7 @@ namespace LanguageDailyTraining.Domain.Entities
         {
             AssertionConcerns.AssertArgumentNotEmpty(Description, "Description cannot be null or empty");
             AssertionConcerns.AssertArgumentNotEmpty(Meaning, "Meaning cannot be null or empty");
+            AssertionConcerns.AssertArgumentNotEquals(TrainingPlanId, Guid.Empty, "TrainingPlanId cannot be empty");
         }
     }
 }
