@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LanguageDailyTraining.Domain.Entities
 {
-    public class User : Entity
+    public class User : Entity, IAggregateRoot
     {
         public string Name { get; private set; }
         public Email Email { get; private set; }
