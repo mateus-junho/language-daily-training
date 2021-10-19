@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{03F39C86-FE55-4F6E-8790-B92EFDFE4E3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageDailyTraining.Domain", "src\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj", "{2641119B-C6A1-4193-84DA-8FC1027C105D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageDailyTraining.Domain", "src\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj", "{2641119B-C6A1-4193-84DA-8FC1027C105D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageDailyTraining.Domain.Tests", "src\LanguageDailyTraining.Domain.Tests\LanguageDailyTraining.Domain.Tests.csproj", "{349C7312-20FC-4181-8A6E-B8F0DE327962}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +21,17 @@ Global
 		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2641119B-C6A1-4193-84DA-8FC1027C105D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{349C7312-20FC-4181-8A6E-B8F0DE327962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{349C7312-20FC-4181-8A6E-B8F0DE327962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{349C7312-20FC-4181-8A6E-B8F0DE327962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{349C7312-20FC-4181-8A6E-B8F0DE327962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2641119B-C6A1-4193-84DA-8FC1027C105D} = {42E1AE79-A3DB-46D0-9103-81428B1F430B}
+		{349C7312-20FC-4181-8A6E-B8F0DE327962} = {42E1AE79-A3DB-46D0-9103-81428B1F430B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCC9F73C-48E3-445F-8E3D-518FDE3BF349}
