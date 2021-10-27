@@ -1,6 +1,6 @@
 ﻿namespace LanguageDailyTraining.Domain.Core
 {
-    interface IAggregateRoot
+    public interface IAggregateRoot
     {
     }
 }
