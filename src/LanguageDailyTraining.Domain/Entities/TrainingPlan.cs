@@ -19,6 +19,8 @@ namespace LanguageDailyTraining.Domain.Entities
         private const int REPETITION_QUANTITY_MIN = 0;
         private const int REPETITION_QUANTITY_MAX = 9;
 
+        protected TrainingPlan() { }
+
         public TrainingPlan(Guid userId, string name, int sentenceQuantity, int repetition) : base()
         {
             UserId = userId;

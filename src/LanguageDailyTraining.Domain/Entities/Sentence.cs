@@ -14,6 +14,8 @@ namespace LanguageDailyTraining.Domain.Entities
         public DateTime LastTimeCheck { get; private set; }
 
         public TrainingPlan TrainingPlan { get; private set; }
+        
+        protected Sentence() { }
 
         public Sentence(Guid trainingPlanId, string description, string meaning) : base()
         {

@@ -11,6 +11,8 @@ namespace LanguageDailyTraining.Domain.Entities
 
         public IEnumerable<TrainingPlan> TrainingPlans { get; private set; }
 
+        protected User() { }
+
         public User(string name, Email email) : base()
         {
             Name = name;
