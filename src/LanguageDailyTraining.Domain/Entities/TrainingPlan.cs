@@ -10,6 +10,7 @@ namespace LanguageDailyTraining.Domain.Entities
         public string Name { get; private set; }
         public int SentenceQuantity { get; private set; }
         public int Repetition { get; private set; }
+        public DateTime RegisterDate { get; private set; }
 
         public User User { get; private set; }
         public IEnumerable<Sentence> Sentences { get; private set; }

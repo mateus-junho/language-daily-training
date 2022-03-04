@@ -17,6 +17,7 @@ namespace LanguageDailyTraining.Data.Mappings
             builder.Property(s => s.Errors).IsRequired();
             builder.Property(s => s.Active).IsRequired();
             builder.Property(s => s.LastTimeCheck).IsRequired();
+            builder.Property(s => s.RegisterDate).IsRequired();
 
             builder.HasOne(s => s.TrainingPlan)
                 .WithMany(t => t.Sentences)

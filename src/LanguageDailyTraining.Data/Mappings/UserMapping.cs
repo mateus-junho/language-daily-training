@@ -10,6 +10,7 @@ namespace LanguageDailyTraining.Data.Mappings
         {
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Name).IsRequired();
+            builder.Property(u => u.RegisterDate).IsRequired();
 
             builder.OwnsOne(u => u.Email, email =>
             {

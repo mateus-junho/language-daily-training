@@ -1,5 +1,6 @@
 ﻿using LanguageDailyTraining.Domain.Core;
 using LanguageDailyTraining.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace LanguageDailyTraining.Domain.Entities
@@ -8,6 +9,7 @@ namespace LanguageDailyTraining.Domain.Entities
     {
         public string Name { get; private set; }
         public Email Email { get; private set; }
+        public DateTime RegisterDate { get; private set; }
 
         public IEnumerable<TrainingPlan> TrainingPlans { get; private set; }
 

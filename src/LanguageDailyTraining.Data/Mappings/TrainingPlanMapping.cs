@@ -14,6 +14,7 @@ namespace LanguageDailyTraining.Data.Mappings
             builder.Property(t => t.Name).IsRequired();
             builder.Property(t => t.SentenceQuantity).IsRequired();
             builder.Property(t => t.Repetition).IsRequired();
+            builder.Property(t => t.RegisterDate).IsRequired();
         }
     }
 }

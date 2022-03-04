@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Data.Repository
 {
-    public class UserRepository : IUserRepository
+    internal class TrainingPlanRepository : ITrainingPlanRepository
     {
         private readonly LanguageDailyTrainingContext context;
 
@@ -19,9 +19,9 @@ namespace LanguageDailyTraining.Data.Repository
             context.Dispose();
         }
 
-        public async Task<User> GetById(Guid id)
+        public async Task<TrainingPlan> GetById(Guid id)
         {
-            return await context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
+            return await context.TrainingPlans.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

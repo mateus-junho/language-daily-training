@@ -29,6 +29,19 @@ namespace LanguageDailyTraining.Data.Context
 
         public async Task<bool> Commit()
         {
+            foreach(var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("RegisterDate") != null))
+            {
+                if(entry.State == EntityState.Added)
+                {
+                    entry.Property("RegisterDate").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("RegisterDate").IsModified = false;
+                }
+            }
+
             return await base.SaveChangesAsync() > 0;
         }
     }

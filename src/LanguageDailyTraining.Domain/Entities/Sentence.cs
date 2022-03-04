@@ -12,6 +12,7 @@ namespace LanguageDailyTraining.Domain.Entities
         public int Errors { get; private set; }
         public bool Active { get; private set; }
         public DateTime LastTimeCheck { get; private set; }
+        public DateTime RegisterDate { get; private set; }
 
         public TrainingPlan TrainingPlan { get; private set; }
         
