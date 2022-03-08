@@ -14,14 +14,19 @@ namespace LanguageDailyTraining.Data.Repository
 
         public IUnitOfWork unitOfWork => context;
 
-        public void Dispose()
+        public async Task Add(User user)
         {
-            context.Dispose();
+            await context.Users.AddAsync(user);
         }
 
         public async Task<User> GetById(Guid id)
         {
-            return await context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
+            return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
         }
     }
 }

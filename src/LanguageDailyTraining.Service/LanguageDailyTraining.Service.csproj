@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LanguageDailyTraining.Application\LanguageDailyTraining.Application.csproj" />
     <ProjectReference Include="..\LanguageDailyTraining.Data\LanguageDailyTraining.Data.csproj" />
     <ProjectReference Include="..\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj" />
   </ItemGroup>

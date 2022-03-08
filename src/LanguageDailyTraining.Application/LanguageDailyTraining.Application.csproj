@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LanguageDailyTraining.Data\LanguageDailyTraining.Data.csproj" />
+    <ProjectReference Include="..\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

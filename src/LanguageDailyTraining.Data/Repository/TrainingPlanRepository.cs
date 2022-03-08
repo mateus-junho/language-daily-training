@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Data.Repository
 {
-    internal class TrainingPlanRepository : ITrainingPlanRepository
+    public class TrainingPlanRepository : ITrainingPlanRepository
     {
         private readonly LanguageDailyTrainingContext context;
 

@@ -8,5 +8,7 @@ namespace LanguageDailyTraining.Domain.Repository
     public interface IUserRepository : IRepository<User>
     {
         Task<User> GetById(Guid id);
+
+        Task Add(User user);
     }
 }

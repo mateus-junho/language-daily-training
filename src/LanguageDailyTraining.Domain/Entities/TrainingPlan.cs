@@ -15,10 +15,10 @@ namespace LanguageDailyTraining.Domain.Entities
         public User User { get; private set; }
         public IEnumerable<Sentence> Sentences { get; private set; }
 
-        private const int SENTENCE_QUANTITY_MIN = 1;
-        private const int SENTENCE_QUANTITY_MAX = 99;
-        private const int REPETITION_QUANTITY_MIN = 0;
-        private const int REPETITION_QUANTITY_MAX = 9;
+        public const int SENTENCE_QUANTITY_MIN = 1;
+        public const int SENTENCE_QUANTITY_MAX = 99;
+        public const int REPETITION_QUANTITY_MIN = 0;
+        public const int REPETITION_QUANTITY_MAX = 9;
 
         protected TrainingPlan() { }
 
