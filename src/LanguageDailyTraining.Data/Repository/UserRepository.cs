@@ -12,6 +12,11 @@ namespace LanguageDailyTraining.Data.Repository
     {
         private readonly LanguageDailyTrainingContext context;
 
+        public UserRepository(LanguageDailyTrainingContext context)
+        {
+            this.context = context;
+        }
+
         public IUnitOfWork unitOfWork => context;
 
         public async Task Add(User user)

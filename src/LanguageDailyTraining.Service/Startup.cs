@@ -1,4 +1,5 @@
 using LanguageDailyTraining.Data.Context;
+using LanguageDailyTraining.Service.Setup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace LanguageDailyTraining.Service
             services.AddDbContext<LanguageDailyTrainingContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.RegisterServices();
 
             services.AddControllers();
         }
