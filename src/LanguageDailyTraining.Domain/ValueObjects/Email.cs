@@ -16,6 +16,12 @@ namespace LanguageDailyTraining.Domain.ValueObjects
             Validate();
         }
 
+        public void SetValue(string value)
+        {
+            Value = value;
+            Validate();
+        }
+
         private void Validate()
         {
             var invalidEmailMessage = "Invalid Email format";

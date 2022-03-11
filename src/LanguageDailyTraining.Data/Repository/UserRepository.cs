@@ -29,6 +29,16 @@ namespace LanguageDailyTraining.Data.Repository
             return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
+        public void Update(User user)
+        {
+            context.Users.Update(user);
+        }
+
+        public void Delete(User user)
+        {
+            context.Users.Remove(user);
+        }
+
         public void Dispose()
         {
             context.Dispose();

@@ -23,6 +23,12 @@ namespace LanguageDailyTraining.Domain.Entities
             Validate();
         }
 
+        public void SetName(string name)
+        {
+            Name = name;
+            Validate();
+        }
+
         public void Validate()
         {
             AssertionConcerns.AssertArgumentNotEmpty(Name, "Name cannot be null or empty");

@@ -12,6 +12,7 @@ namespace LanguageDailyTraining.Application.DTOs
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Field {0} is required")]
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

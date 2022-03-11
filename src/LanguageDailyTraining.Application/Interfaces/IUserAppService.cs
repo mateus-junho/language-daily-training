@@ -6,8 +6,12 @@ namespace LanguageDailyTraining.Application.Interfaces
 {
     public interface IUserAppService : IDisposable
     {
-        Task AddUser(UserDto user);
+        Task<UserDto> AddUser(UserDto userDto);
 
         Task<UserDto> GetUserById(Guid id);
+
+        Task UpdateUser(UserDto userDto);
+
+        Task<UserDto> DeleteUser(Guid userId);
     }
 }

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+[assembly: ApiConventionType(typeof(DefaultApiConventions))]
 namespace LanguageDailyTraining.Service
 {
     public class Startup
@@ -35,6 +36,11 @@ namespace LanguageDailyTraining.Service
             services.RegisterServices();
 
             services.AddControllers();
+
+            services.AddMvc(options =>
+            {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,5 +10,9 @@ namespace LanguageDailyTraining.Domain.Repository
         Task<User> GetById(Guid id);
 
         Task Add(User user);
+
+        void Update(User user);
+
+        void Delete(User user);
     }
 }
