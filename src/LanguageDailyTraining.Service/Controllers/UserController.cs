@@ -22,7 +22,7 @@ namespace LanguageDailyTraining.Service.Controllers
         {
             var user = await userAppService.GetUserById(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -33,7 +33,7 @@ namespace LanguageDailyTraining.Service.Controllers
         [HttpPut(@"{userId}")]
         public async Task<ActionResult> UpdateUser(Guid userId, UserDto user)
         {
-            if(userId != user.Id)
+            if (userId != user.Id)
             {
                 return BadRequest();
             }
@@ -51,7 +51,7 @@ namespace LanguageDailyTraining.Service.Controllers
             return CreatedAtAction(nameof(GetUser), new { userId = savedUser.Id }, savedUser);
         }
 
-        [HttpDelete]
+        [HttpDelete(@"{userId}")]
         public async Task<ActionResult<UserDto>> DeleteUser(Guid userId)
         {
             var deletedUser = await userAppService.DeleteUser(userId);
