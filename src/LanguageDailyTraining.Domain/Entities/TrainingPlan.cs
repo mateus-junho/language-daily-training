@@ -32,6 +32,24 @@ namespace LanguageDailyTraining.Domain.Entities
             Validate();
         }
 
+        public void SetName(string name)
+        {
+            Name = name;
+            Validate();
+        }
+
+        public void SetSentenceQuantity(int sentenceQuantity)
+        {
+            SentenceQuantity = sentenceQuantity;
+            Validate();
+        }
+
+        public void SetRepetition(int repetition)
+        {
+            Repetition = repetition;
+            Validate();
+        }
+
         public void Validate()
         {
             AssertionConcerns.AssertArgumentNotEmpty(Name, "Name cannot be null or empty");

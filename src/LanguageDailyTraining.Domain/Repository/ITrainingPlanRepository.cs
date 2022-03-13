@@ -8,5 +8,11 @@ namespace LanguageDailyTraining.Domain.Repository
     public interface ITrainingPlanRepository : IRepository<TrainingPlan>
     {
         Task<TrainingPlan> GetById(Guid id);
+
+        Task Add(TrainingPlan trainingPlan);
+
+        void Update(TrainingPlan trainingPlan);
+
+        void Delete(TrainingPlan trainingPlan);
     }
 }

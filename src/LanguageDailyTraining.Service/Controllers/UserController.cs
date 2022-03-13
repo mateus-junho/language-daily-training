@@ -30,6 +30,14 @@ namespace LanguageDailyTraining.Service.Controllers
             return Ok(user);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<UserDto>> AddUser(UserDto user)
+        {
+            var savedUser = await userAppService.AddUser(user);
+
+            return CreatedAtAction(nameof(GetUser), new { userId = savedUser.Id }, savedUser);
+        }
+
         [HttpPut(@"{userId}")]
         public async Task<ActionResult> UpdateUser(Guid userId, UserDto user)
         {
@@ -41,14 +49,6 @@ namespace LanguageDailyTraining.Service.Controllers
             await userAppService.UpdateUser(user);
 
             return NoContent();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<UserDto>> UpdateUser(UserDto user)
-        {
-            var savedUser = await userAppService.AddUser(user);
-
-            return CreatedAtAction(nameof(GetUser), new { userId = savedUser.Id }, savedUser);
         }
 
         [HttpDelete(@"{userId}")]

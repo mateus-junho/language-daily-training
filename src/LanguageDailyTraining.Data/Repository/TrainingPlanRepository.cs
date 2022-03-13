@@ -19,14 +19,29 @@ namespace LanguageDailyTraining.Data.Repository
 
         public IUnitOfWork unitOfWork => context;
 
-        public void Dispose()
-        {
-            context.Dispose();
-        }
-
         public async Task<TrainingPlan> GetById(Guid id)
         {
             return await context.TrainingPlans.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+        }
+
+        public async Task Add(TrainingPlan trainingPlan)
+        {
+            await context.TrainingPlans.AddAsync(trainingPlan);
+        }
+
+        public void Update(TrainingPlan trainingPlan)
+        {
+            context.TrainingPlans.Update(trainingPlan);
+        }
+
+        public void Delete(TrainingPlan trainingPlan)
+        {
+            context.TrainingPlans.Remove(trainingPlan);
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
         }
     }
 }
