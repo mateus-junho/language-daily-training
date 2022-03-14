@@ -16,6 +16,7 @@ namespace LanguageDailyTraining.Service.Setup
             services.AddScoped<LanguageDailyTrainingContext>();
 
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<ITrainingPlanAppService, TrainingPlanAppService>();
         }
     }
 }

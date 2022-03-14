@@ -1,4 +1,5 @@
-﻿using LanguageDailyTraining.Application.DTOs;
+﻿using LanguageDailyTraining.Application.Constants;
+using LanguageDailyTraining.Application.DTOs;
 using LanguageDailyTraining.Application.Interfaces;
 using LanguageDailyTraining.Application.Mappings;
 using LanguageDailyTraining.CrossCutting.Exceptions;
@@ -40,7 +41,7 @@ namespace LanguageDailyTraining.Application.Services
             
             if(user == null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException(ReturnMessage.USER_NOT_FOUND);
             }
 
             user.Email.SetValue(userDto.Email);
@@ -56,7 +57,7 @@ namespace LanguageDailyTraining.Application.Services
 
             if (user == null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException(ReturnMessage.USER_NOT_FOUND);
             }
 
             userRepository.Delete(user);

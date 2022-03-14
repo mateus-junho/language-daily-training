@@ -1,4 +1,5 @@
-﻿using LanguageDailyTraining.Application.DTOs;
+﻿using LanguageDailyTraining.Application.Constants;
+using LanguageDailyTraining.Application.DTOs;
 using LanguageDailyTraining.Application.Interfaces;
 using LanguageDailyTraining.Application.Mappings;
 using LanguageDailyTraining.CrossCutting.Exceptions;
@@ -12,10 +13,12 @@ namespace LanguageDailyTraining.Application.Services
     public class TrainingPlanAppService : ITrainingPlanAppService
     {
         private readonly ITrainingPlanRepository trainingPlanRepository;
+        private readonly IUserRepository userRepository;
 
-        public TrainingPlanAppService(ITrainingPlanRepository trainingPlanRepository)
+        public TrainingPlanAppService(ITrainingPlanRepository trainingPlanRepository, IUserRepository userRepository)
         {
             this.trainingPlanRepository = trainingPlanRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task<TrainingPlanDto> GetTrainingPlanById(Guid trainingPlanId)
@@ -26,6 +29,13 @@ namespace LanguageDailyTraining.Application.Services
 
         public async Task<TrainingPlanDto> AddTrainingPlan(TrainingPlanDto trainingPlanDto)
         {
+            var user = await userRepository.GetById(trainingPlanDto.UserId);
+
+            if (user == null)
+            {
+                throw new ArgumentException(ReturnMessage.USER_NOT_FOUND);
+            }
+
             var trainingPlan = new TrainingPlan(trainingPlanDto.UserId, trainingPlanDto.Name, trainingPlanDto.SentenceQuantity, trainingPlanDto.Repetition);
             await trainingPlanRepository.Add(trainingPlan);
             await trainingPlanRepository.unitOfWork.Commit();
@@ -38,7 +48,7 @@ namespace LanguageDailyTraining.Application.Services
 
             if (trainingPlan == null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException(ReturnMessage.TRAINING_PLAN_NOT_FOUND);
             }
 
             trainingPlan.SetName(trainingPlanDto.Name);
@@ -55,7 +65,7 @@ namespace LanguageDailyTraining.Application.Services
 
             if (trainingPlan == null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException(ReturnMessage.TRAINING_PLAN_NOT_FOUND);
             }
 
             trainingPlanRepository.Delete(trainingPlan);
