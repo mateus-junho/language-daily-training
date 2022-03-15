@@ -39,6 +39,21 @@ namespace LanguageDailyTraining.Data.Repository
             context.TrainingPlans.Remove(trainingPlan);
         }
 
+        public async Task<Sentence> GetSentenceById(Guid sentenceId)
+        {
+            return await context.Sentences.AsNoTracking().FirstOrDefaultAsync(s => s.Id == sentenceId);
+        }
+
+        public async Task AddSentence(Sentence sentence)
+        {
+            await context.Sentences.AddAsync(sentence);
+        }
+
+        public void DeleteSentence(Sentence sentence)
+        {
+            context.Sentences.Remove(sentence);
+        }
+
         public void Dispose()
         {
             context.Dispose();

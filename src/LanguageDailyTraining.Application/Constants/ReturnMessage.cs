@@ -4,5 +4,6 @@
     {
         public const string USER_NOT_FOUND = "User not found";
         public const string TRAINING_PLAN_NOT_FOUND = "Training Plan not found";
+        public const string SENTENCE_NOT_FOUND = "Sentence not found";
     }
 }

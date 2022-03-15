@@ -74,6 +74,33 @@ namespace LanguageDailyTraining.Application.Services
             return trainingPlan.ToDto();
         }
 
+        public async Task AddSentence(SentenceDto sentenceDto)
+        {
+            var trainingPlan = await trainingPlanRepository.GetById(sentenceDto.TrainingPlanId);
+
+            if (trainingPlan == null)
+            {
+                throw new ArgumentException(ReturnMessage.TRAINING_PLAN_NOT_FOUND);
+            }
+
+            var sentence = new Sentence(sentenceDto.TrainingPlanId, sentenceDto.Description, sentenceDto.Meaning);
+            await trainingPlanRepository.AddSentence(sentence);
+            await trainingPlanRepository.unitOfWork.Commit();
+        }
+
+        public async Task DeleteSentence(Guid sentenceId)
+        {
+            var sentence = await trainingPlanRepository.GetSentenceById(sentenceId);
+
+            if (sentence == null)
+            {
+                throw new NotFoundException(ReturnMessage.SENTENCE_NOT_FOUND);
+            }
+
+            trainingPlanRepository.DeleteSentence(sentence);
+            await trainingPlanRepository.unitOfWork.Commit();
+        }
+
         public void Dispose()
         {
             trainingPlanRepository?.Dispose();

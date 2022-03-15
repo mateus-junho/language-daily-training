@@ -15,5 +15,9 @@ namespace LanguageDailyTraining.Application.Interfaces
         Task UpdateTrainingPlan(TrainingPlanDto trainingPlanDto);
 
         Task<TrainingPlanDto> DeleteTrainingPlan(Guid trainingPlanId);
+
+        Task AddSentence(SentenceDto sentenceDto);
+
+        Task DeleteSentence(Guid sentenceId);
     }
 }

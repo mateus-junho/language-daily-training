@@ -14,5 +14,11 @@ namespace LanguageDailyTraining.Domain.Repository
         void Update(TrainingPlan trainingPlan);
 
         void Delete(TrainingPlan trainingPlan);
+
+        Task<Sentence> GetSentenceById(Guid sentenceId);
+
+        Task AddSentence(Sentence sentence);
+
+        void DeleteSentence(Sentence sentence);
     }
 }

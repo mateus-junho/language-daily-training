@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/training-plan")]
     [ApiController]
     public class TrainingPlanController : ControllerBase
     {
@@ -57,6 +57,27 @@ namespace LanguageDailyTraining.Service.Controllers
             var deletedTrainingPlan = await trainingPlanAppService.DeleteTrainingPlan(trainingPlanId);
 
             return Ok(deletedTrainingPlan);
+        }
+
+        [HttpPost(@"{trainingPlanId}/sentence")]
+        public async Task<ActionResult> AddSentence(Guid trainingPlanId, SentenceDto sentence)
+        {
+            if (trainingPlanId != sentence.TrainingPlanId)
+            {
+                return BadRequest();
+            }
+
+            await trainingPlanAppService.AddSentence(sentence);
+
+            return Ok();
+        }
+
+        [HttpDelete(@"sentence/{sentenceId}")]
+        public async Task<ActionResult<TrainingPlanDto>> DeleteTrainingPlan(Guid trainingPlanId, Guid sentenceId)
+        {
+            await trainingPlanAppService.DeleteSentence(sentenceId);
+
+            return Ok();
         }
     }
 }
