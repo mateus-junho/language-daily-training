@@ -33,6 +33,8 @@ namespace LanguageDailyTraining.Service
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentityConfiguration(Configuration);
+
             services.RegisterServices();
 
             services.AddControllers();
@@ -55,8 +57,9 @@ namespace LanguageDailyTraining.Service
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

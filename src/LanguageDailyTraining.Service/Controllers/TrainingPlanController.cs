@@ -1,11 +1,13 @@
 ﻿using LanguageDailyTraining.Application.DTOs;
 using LanguageDailyTraining.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
+    [Authorize]
     [Route("api/training-plan")]
     [ApiController]
     public class TrainingPlanController : ControllerBase
