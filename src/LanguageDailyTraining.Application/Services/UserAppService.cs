@@ -7,6 +7,7 @@ using LanguageDailyTraining.Domain.Entities;
 using LanguageDailyTraining.Domain.Repository;
 using LanguageDailyTraining.Domain.ValueObjects;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Application.Services
@@ -20,9 +21,21 @@ namespace LanguageDailyTraining.Application.Services
             this.userRepository = userRepository;
         }
 
+        public async Task<IEnumerable<UserDto>> GetUsers()
+        {
+            var users = await userRepository.GetAll();
+            return users.ToDto();
+        }
+
         public async Task<UserDto> GetUserById(Guid userId)
         {
             var user = await userRepository.GetById(userId);
+
+            if (user == null)
+            {
+                throw new NotFoundException(ReturnMessage.USER_NOT_FOUND);
+            }
+
             return user.ToDto();
         }
 

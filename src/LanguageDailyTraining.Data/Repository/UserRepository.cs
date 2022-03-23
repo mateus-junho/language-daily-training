@@ -4,6 +4,7 @@ using LanguageDailyTraining.Domain.Entities;
 using LanguageDailyTraining.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LanguageDailyTraining.Data.Repository
@@ -22,6 +23,11 @@ namespace LanguageDailyTraining.Data.Repository
         public async Task<User> GetById(Guid id)
         {
             return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<IEnumerable<User>> GetAll()
+        {
+            return await context.Users.ToListAsync();
         }
 
         public async Task Add(User user)

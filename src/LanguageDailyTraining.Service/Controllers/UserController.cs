@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using LanguageDailyTraining.Service.Extensions;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -18,19 +22,23 @@ namespace LanguageDailyTraining.Service.Controllers
             this.userAppService = userAppService;
         }
 
+        [ClaimsAuthorize("Administrator", "Manager")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+        {
+            var user = await userAppService.GetUsers();
+            return Ok(user);
+        }
+
         [HttpGet(@"{userId}")]
         public async Task<ActionResult<UserDto>> GetUser(Guid userId)
         {
             var user = await userAppService.GetUserById(userId);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
-
             return Ok(user);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]

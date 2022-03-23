@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
@@ -36,11 +37,6 @@ namespace LanguageDailyTraining.Service.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Register(RegisterUserDto registerUserDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var user = new IdentityUser
             {
                 UserName = registerUserDto.Email,
@@ -52,7 +48,7 @@ namespace LanguageDailyTraining.Service.Controllers
             if(result.Succeeded)
             {
                 await signInManager.SignInAsync(user, false);
-                return Ok(CreateToken());
+                return Ok(await CreateToken(user.Email));
             }
 
             return BadRequest(registerUserDto);
@@ -68,7 +64,7 @@ namespace LanguageDailyTraining.Service.Controllers
 
             if(result.Succeeded)
             {
-                return Ok(CreateToken());
+                return Ok(await CreateToken(loginDto.Email));
             }
             if(result.IsLockedOut)
             {
@@ -78,14 +74,32 @@ namespace LanguageDailyTraining.Service.Controllers
             return BadRequest("User or password incorrect");
         }
 
-        private string CreateToken()
+        private async Task<string> CreateToken(string email)
         {
+            var user = await userManager.FindByEmailAsync(email);
+            var claims = await userManager.GetClaimsAsync(user);
+            var roles = await userManager.GetRolesAsync(user);
+
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64));
+            foreach (var userRole in roles)
+            {
+                claims.Add(new Claim("role", userRole));
+            }
+
+            var identityClaims = new ClaimsIdentity();
+            identityClaims.AddClaims(claims);
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
                 Issuer = appSettings.Issuer,
                 Audience = appSettings.ValidOn,
+                Subject = identityClaims,
                 Expires = DateTime.UtcNow.AddHours(appSettings.HoursExpiration),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             });
@@ -93,5 +107,8 @@ namespace LanguageDailyTraining.Service.Controllers
             var encodedToken = tokenHandler.WriteToken(token);
             return encodedToken;
         }
+
+        private static long ToUnixEpochDate(DateTime date)
+            => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }
 }
