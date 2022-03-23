@@ -3,6 +3,7 @@ using LanguageDailyTraining.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
@@ -31,6 +32,8 @@ namespace LanguageDailyTraining.Service.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<UserDto>> AddUser(UserDto user)
         {
             var savedUser = await userAppService.AddUser(user);

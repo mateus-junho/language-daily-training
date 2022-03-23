@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace LanguageDailyTraining.Service
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            //IdentityModelEventSource.ShowPII = true;
             services.AddIdentityConfiguration(Configuration);
 
             services.RegisterServices();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
@@ -46,6 +47,8 @@ namespace LanguageDailyTraining.Service.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<TrainingPlanDto>> AddTrainingPlan(TrainingPlanDto trainingPlan)
         {
             var savedTrainingPlan = await trainingPlanAppService.AddTrainingPlan(trainingPlan);
@@ -62,6 +65,9 @@ namespace LanguageDailyTraining.Service.Controllers
         }
 
         [HttpPost(@"{trainingPlanId}/sentence")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> AddSentence(Guid trainingPlanId, SentenceDto sentence)
         {
             if (trainingPlanId != sentence.TrainingPlanId)
@@ -75,7 +81,7 @@ namespace LanguageDailyTraining.Service.Controllers
         }
 
         [HttpDelete(@"sentence/{sentenceId}")]
-        public async Task<ActionResult<TrainingPlanDto>> DeleteTrainingPlan(Guid trainingPlanId, Guid sentenceId)
+        public async Task<ActionResult<TrainingPlanDto>> DeleteSentence(Guid sentenceId)
         {
             await trainingPlanAppService.DeleteSentence(sentenceId);
 
