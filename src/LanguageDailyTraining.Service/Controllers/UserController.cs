@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using LanguageDailyTraining.Service.Extensions;
+using LanguageDailyTraining.Domain.Core;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
@@ -16,10 +17,12 @@ namespace LanguageDailyTraining.Service.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserAppService userAppService;
+        private readonly IUser appUser;
 
-        public UserController(IUserAppService userAppService)
+        public UserController(IUserAppService userAppService, IUser appUser)
         {
             this.userAppService = userAppService;
+            this.appUser = appUser;
         }
 
         [ClaimsAuthorize("Administrator", "Manager")]
@@ -68,6 +71,23 @@ namespace LanguageDailyTraining.Service.Controllers
             var deletedUser = await userAppService.DeleteUser(userId);
 
             return Ok(deletedUser);
+        }
+
+        /// <summary>
+        /// Return logged user information
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet(@"logged-user")]
+        public ActionResult<LoggedUserDto> GetLoggedUser(Guid userId)
+        {
+            var loggedUser = new LoggedUserDto
+            {
+                UserId = appUser.GetUserId(),
+                Email = appUser.GetUserEmail(),
+            };
+
+            return Ok(loggedUser);
         }
     }
 }

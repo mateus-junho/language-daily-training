@@ -2,7 +2,10 @@
 using LanguageDailyTraining.Application.Services;
 using LanguageDailyTraining.Data.Context;
 using LanguageDailyTraining.Data.Repository;
+using LanguageDailyTraining.Domain.Core;
 using LanguageDailyTraining.Domain.Repository;
+using LanguageDailyTraining.Service.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LanguageDailyTraining.Service.Setup
@@ -17,6 +20,9 @@ namespace LanguageDailyTraining.Service.Setup
 
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<ITrainingPlanAppService, TrainingPlanAppService>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
         }
     }
 }

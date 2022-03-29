@@ -54,8 +54,12 @@ namespace LanguageDailyTraining.Service
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts(); // only https connections
+            }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); // if http redirect to https connection
 
             app.UseRouting();
 
