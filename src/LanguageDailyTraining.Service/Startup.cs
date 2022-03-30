@@ -1,4 +1,5 @@
 using LanguageDailyTraining.Data.Context;
+using LanguageDailyTraining.Service.Middleware;
 using LanguageDailyTraining.Service.Setup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -59,6 +60,7 @@ namespace LanguageDailyTraining.Service
                 app.UseHsts(); // only https connections
             }
 
+            app.UseExceptionMiddleware();
             app.UseHttpsRedirection(); // if http redirect to https connection
 
             app.UseRouting();

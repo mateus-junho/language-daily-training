@@ -64,19 +64,15 @@ namespace LanguageDailyTraining.Application.Services
             await userRepository.unitOfWork.Commit();
         }
 
-        public async Task<UserDto> DeleteUser(Guid userId)
+        public async Task DeleteUser(Guid userId)
         {
             var user = await userRepository.GetById(userId);
 
-            if (user == null)
+            if (user != null)
             {
-                throw new NotFoundException(ReturnMessage.USER_NOT_FOUND);
+                userRepository.Delete(user);
+                await userRepository.unitOfWork.Commit();
             }
-
-            userRepository.Delete(user);
-            await userRepository.unitOfWork.Commit();
-
-            return user.ToDto();
         }
 
         public void Dispose()

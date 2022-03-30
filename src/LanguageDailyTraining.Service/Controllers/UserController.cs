@@ -66,11 +66,13 @@ namespace LanguageDailyTraining.Service.Controllers
         }
 
         [HttpDelete(@"{userId}")]
-        public async Task<ActionResult<UserDto>> DeleteUser(Guid userId)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> DeleteUser(Guid userId)
         {
-            var deletedUser = await userAppService.DeleteUser(userId);
+            await userAppService.DeleteUser(userId);
 
-            return Ok(deletedUser);
+            return NoContent();
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace LanguageDailyTraining.Service.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet(@"logged-user")]
-        public ActionResult<LoggedUserDto> GetLoggedUser(Guid userId)
+        public ActionResult<LoggedUserDto> GetLoggedUser()
         {
             var loggedUser = new LoggedUserDto
             {

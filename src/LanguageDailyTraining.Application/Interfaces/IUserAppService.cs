@@ -15,6 +15,6 @@ namespace LanguageDailyTraining.Application.Interfaces
 
         Task UpdateUser(UserDto userDto);
 
-        Task<UserDto> DeleteUser(Guid userId);
+        Task DeleteUser(Guid userId);
     }
 }
