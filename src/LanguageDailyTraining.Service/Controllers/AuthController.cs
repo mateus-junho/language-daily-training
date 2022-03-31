@@ -13,7 +13,9 @@ using System.Security.Claims;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
-    [Route("api")]
+    [ApiVersion("2.0")]
+    [ApiVersion("1.0", Deprecated = true)]
+    [Route("api/v{version:apiVersion}/")]
     [ApiController]
     public class AuthController : ControllerBase
     {

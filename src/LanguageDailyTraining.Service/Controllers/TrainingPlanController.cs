@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Http;
 namespace LanguageDailyTraining.Service.Controllers
 {
     [Authorize]
-    [Route("api/training-plan")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/training-plan")]
     [ApiController]
     public class TrainingPlanController : ControllerBase
     {
