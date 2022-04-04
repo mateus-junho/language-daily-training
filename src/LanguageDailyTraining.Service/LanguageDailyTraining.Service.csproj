@@ -15,17 +15,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LanguageDailyTraining.Application\LanguageDailyTraining.Application.csproj" />
     <ProjectReference Include="..\LanguageDailyTraining.Data\LanguageDailyTraining.Data.csproj" />
     <ProjectReference Include="..\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="V2\" />
-    <Folder Include="V1\" />
   </ItemGroup>
 
 

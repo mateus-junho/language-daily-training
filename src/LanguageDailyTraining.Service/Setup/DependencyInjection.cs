@@ -7,6 +7,8 @@ using LanguageDailyTraining.Domain.Repository;
 using LanguageDailyTraining.Service.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LanguageDailyTraining.Service.Setup
 {
@@ -23,6 +25,8 @@ namespace LanguageDailyTraining.Service.Setup
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         }
     }
 }
