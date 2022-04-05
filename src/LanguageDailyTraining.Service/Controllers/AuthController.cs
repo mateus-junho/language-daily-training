@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using Microsoft.Extensions.Logging;
 
 namespace LanguageDailyTraining.Service.Controllers
 {
@@ -21,15 +22,18 @@ namespace LanguageDailyTraining.Service.Controllers
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
         private readonly AppSettings appSettings;
+        private readonly ILogger logger;
 
         public AuthController(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
-            IOptions<AppSettings> appSettings)
+            IOptions<AppSettings> appSettings,
+            ILogger<AuthController> logger)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.appSettings = appSettings.Value;
+            this.logger = logger;
         }
 
         [HttpPost("register")]
@@ -65,6 +69,7 @@ namespace LanguageDailyTraining.Service.Controllers
 
             if(result.Succeeded)
             {
+                logger.LogInformation($"success user {loginDto.Email} login");
                 return Ok(await CreateToken(loginDto.Email));
             }
             if(result.IsLockedOut)

@@ -46,6 +46,8 @@ namespace LanguageDailyTraining.Service.Middleware
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            //add logging error
+
             ApplicationErrorCollection result;
 
             context.Response.ContentType = "application/json";
