@@ -1,7 +1,9 @@
+using HealthChecks.UI.Client;
 using LanguageDailyTraining.Data.Context;
 using LanguageDailyTraining.Service.Middleware;
 using LanguageDailyTraining.Service.Setup;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -56,6 +58,9 @@ namespace LanguageDailyTraining.Service
 
             services.RegisterServices();
 
+            services.AddHealthChecks()
+                .AddSqlServer(Configuration.GetConnectionString("DefaultConnection"), name: "SQL Database");
+
             services.AddControllers();
 
             services.AddMvc(options =>
@@ -90,6 +95,12 @@ namespace LanguageDailyTraining.Service
             });
 
             app.UseSwaggerConfiguration(provider);
+
+            app.UseHealthChecks("/api/healthcheck", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
         }
     }
 }
