@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<UserSecretsId>8d2018c1-2cf5-4fcd-8f6b-f638a80e2dfe</UserSecretsId>
 	<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
   </PropertyGroup>
 
@@ -25,6 +26,5 @@
     <ProjectReference Include="..\LanguageDailyTraining.Data\LanguageDailyTraining.Data.csproj" />
     <ProjectReference Include="..\LanguageDailyTraining.Domain\LanguageDailyTraining.Domain.csproj" />
   </ItemGroup>
-
 
 </Project>
